@@ -6,8 +6,8 @@
     "mssql1": {
       "resourceId": null,
       "type": "mssql.local",
-      "connectionId": "DefaultConnection",
-      "secretStore": null
+      "connectionId": "DefaultConnection3",
+      "secretStore": "LocalSecretsFile"
     }
   }
 }
