@@ -53,7 +53,7 @@ namespace WebApplication1
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            SeedProduct.Seed(app);
             app.UseRouting();
 
             app.UseAuthentication();
