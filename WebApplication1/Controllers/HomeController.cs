@@ -22,13 +22,35 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Create(Product product)
+        {
+            if (product != null)
+            {
+                ProductRepository.AddProduct(product);
+                return View("List", ProductRepository.Products);
+            }
+            else
+                return View();
+        }
+
+        [HttpGet]
         public IActionResult Search(string word)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(word))
+                return View();
+            else
+                return View("List", ProductRepository.Products.Where(i => i.Name.Contains(word)));
+        }
+
+        public IActionResult List()
+        {
+            return View(ProductRepository.Products);
         }
 
         public IActionResult Privacy()
