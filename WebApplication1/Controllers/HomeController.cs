@@ -22,6 +22,14 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        public IActionResult Search(string word)
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
