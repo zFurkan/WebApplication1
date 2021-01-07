@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
@@ -12,10 +13,28 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<WebUser> _userManager;
+
+
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            
+            
+        }
+        public async Task<IActionResult> CreateRole(string role)
+        {
+            await _roleManager.CreateAsync(new IdentityRole(role));
+            return Ok();
+        }
+
+        public async Task<IActionResult> AddRole(string username,string role)
+        {
+            var user= await _userManager.FindByNameAsync(username);
+            await _userManager.AddToRoleAsync(user, role);
+            return Ok();
         }
 
         public IActionResult Index()
